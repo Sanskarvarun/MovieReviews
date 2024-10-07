@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import pickle
 from nltk import pos_tag
 from nltk.corpus import wordnet
@@ -55,6 +55,13 @@ def get_feature_dict(words):
     for w in features:
         current_features[w] = (w in words_set)
     return current_features
+
+# Route for serving the HTML page
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 # Define a route to classify a review
 
